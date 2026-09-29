@@ -1,0 +1,22 @@
+{
+  "name": "bzhn",
+  "owner": {
+    "name": "bzhn",
+    "url": "https://github.com/bzhn"
+  },
+  "description": "bzhn's skills for coding agents, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "bzhn-skills",
+      "source": "./",
+      "description": "Stack-agnostic skills for coding agents: code review, debugging, learning and planning.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "code-review",
+        "gitlab"
+      ]
+    }
+  ]
+}
