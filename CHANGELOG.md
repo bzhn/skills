@@ -2,6 +2,12 @@
 
 All notable changes to this plugin are documented here. Versions follow [Semantic Versioning](https://semver.org): major for renamed or removed skills and breaking output format changes, minor for new skills or new behavior, patch for wording fixes.
 
+## 0.3.0 — unreleased
+
+### Changed
+
+- `review-to-gitlab-format`: finds the branch's merge request with glab or a GitLab MCP tool and links it in the note's `mr` property, like `"[myapp!123](https://…)"`. The chat reply shows the MR too.
+
 ## 0.2.0 — 2026-09-30
 
 ### Added

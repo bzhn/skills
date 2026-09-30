@@ -1,6 +1,6 @@
 {
   "name": "bzhn-skills",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Stack-agnostic skills for coding agents: code review, debugging, learning and planning. Each skill does one job and comes from real day-to-day development work.",
   "author": {
     "name": "bzhn",

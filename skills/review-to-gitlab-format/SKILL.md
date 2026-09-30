@@ -10,9 +10,11 @@ Convert a code review into the specialized format described below. There are two
 
 First of all, check whether there's already a code review file for this branch in `~/.gitlab-review-notes/` (see the file naming at the end). Match any file ending in `-myapp-branchname.md`, regardless of the date and time. If there is and it's not empty, ask the user whether they want to format the MR again.
 
+Then look for the merge request of the branch. Run `glab mr list --source-branch <branch> --all --output json` in the project. If glab isn't available or fails, use a GitLab MCP tool if one is connected. If there are several MRs, take the open one (`state: opened`), otherwise the most recent. Take its `iid` and `web_url`. Never guess the number and don't ask the user. If nothing is found, leave the `mr` property empty.
+
 The file has three parts: properties, an index table and one section per review issue.
 
-1. Properties at the very top of the file (Obsidian frontmatter): `project` (the project name as on the GitLab remote), `branch`, `target` (main or master), `reviewed` (date and time), `issues` (the total number of issues), `high`, `medium` and `low` (the number of issues of each level) and `tags: [code-review]`. The counts must match the issues below.
+1. Properties at the very top of the file (Obsidian frontmatter): `project` (the project name as on the GitLab remote), `branch`, `target` (main or master), `mr` (a link to the merge request as `"[project!iid](web_url)"`, always in double quotes, because an unquoted `[` starts a YAML list; empty if no MR was found), `reviewed` (date and time), `issues` (the total number of issues), `high`, `medium` and `low` (the number of issues of each level) and `tags: [code-review]`. The counts must match the issues below.
 2. An index table with one row per issue: the number of the issue (linked to its heading), the level, the file name with lines and a TLDR of a few words.
 3. For each issue, a section with:
    - The heading `## number · level · file:line[-line]`, with file:line[-line] in backticks. Write the exact file:line[-line] where the comment should be left. This is needed to leave the comment in the correct place in the GitLab MR.
@@ -40,6 +42,7 @@ Example of the complete file for a review with two issues:
 project: myapp
 branch: feat/invoice-export
 target: main
+mr: "[myapp!123](https://gitlab.example.com/group/myapp/-/merge_requests/123)"
 reviewed: 2026-01-02 14:30
 issues: 2
 high: 1
@@ -108,4 +111,4 @@ Fix: reuse `formatMoney` here instead of formatting the float directly.
 After creating the text in the specified format, save the output to a text file in `~/.gitlab-review-notes/` (not in the project). Create the folder if it doesn't exist. Name the file gitlab-review-20260102-1430-myapp-branchname.md,
 where the date (YYYYMMDD), the time (HHMM, 24-hour), myapp (the project name as on the GitLab remote) and the branch name are dynamic. Replace / with - in the branch name.
 
-Don't show the formatted review in the chat. Only reply with short stats: the number of issues and how many there are of each level (High, Medium, Low).
+Don't show the formatted review in the chat. Only reply with short stats: the number of issues and how many there are of each level (High, Medium, Low), and one line with the MR: `MR: myapp!123`, or `MR: not found`.
