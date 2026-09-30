@@ -2,7 +2,7 @@
 
 All notable changes to this plugin are documented here. Versions follow [Semantic Versioning](https://semver.org): major for renamed or removed skills and breaking output format changes, minor for new skills or new behavior, patch for wording fixes.
 
-## 0.3.0 — unreleased
+## 0.3.0 — 2026-09-30
 
 ### Changed
 
